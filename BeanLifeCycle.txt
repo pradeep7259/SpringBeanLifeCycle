@@ -1,0 +1,39 @@
+@Component
+public class MyBean implements InitializingBean, DisposableBean, BeanNameAware, BeanFactoryAware {
+
+    private String property;
+
+    public void setProperty(String property) {
+        this.property = property;
+    }
+
+    @Override
+    public void setBeanName(String name) {
+        System.out.println("Bean Name is set to: " + name);
+    }
+
+    @Override
+    public void setBeanFactory(BeanFactory beanFactory) {
+        System.out.println("Bean Factory is set");
+    }
+
+    @PostConstruct
+    public void customInit() {
+        System.out.println("Custom Init Method");
+    }
+
+    @Override
+    public void afterPropertiesSet() {
+        System.out.println("InitializingBean's afterPropertiesSet Method");
+    }
+
+    @PreDestroy
+    public void customDestroy() {
+        System.out.println("Custom Destroy Method");
+    }
+
+    @Override
+    public void destroy() {
+        System.out.println("DisposableBean's destroy Method");
+    }
+}
